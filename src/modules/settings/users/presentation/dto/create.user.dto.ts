@@ -1,6 +1,23 @@
-import { IsNotEmpty, IsNumber, IsString, Min } from "class-validator";
+import { Type } from "class-transformer";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString, Min, ValidateNested } from "class-validator";
 
-export class CreateUserDTO {
+export class SaveUserPermissionDTO {
+
+    @IsNumber()
+    @Min(1)
+    peusua_OpcionId!: number;
+
+    @IsBoolean()
+    peusua_Crear!: boolean;
+
+    @IsBoolean()
+    peusua_Editar!: boolean;
+
+    @IsBoolean()
+    peusua_CambiarStatus!: boolean;
+}
+
+export class SaveUserDTO {
 
     @IsString()
     @IsNotEmpty()
@@ -11,11 +28,22 @@ export class CreateUserDTO {
     usua_NombreUsuario!: string;
 
     @IsString()
-    @IsNotEmpty()
     usua_Contrasenia!: string;
 
     @IsNumber()
     @Min(1)
     usua_RolId!: number;
 
+}
+
+export class DataSaveUser {
+
+    @ValidateNested()
+    @Type(()=> SaveUserDTO)
+    user!: SaveUserDTO;
+
+    @ValidateNested()
+    @Type(()=> SaveUserPermissionDTO)
+    permissions!: SaveUserPermissionDTO[];
+    
 }

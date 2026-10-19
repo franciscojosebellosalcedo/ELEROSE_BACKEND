@@ -11,7 +11,6 @@ export class UserEntity {
         public usua_CreacionId: number,
         public usua_ModificacionId: number,
         public usua_Creacion: Date,
-        public usua_UltimoAcceso: Date | null,
         public usua_Modificacion: Date
     ){
 

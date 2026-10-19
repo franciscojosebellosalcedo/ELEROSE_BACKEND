@@ -6,4 +6,10 @@ export const ROL_TOKENS = {
     PAGINATE: "RolPaginate",
     CONTROLLER: "RolController",
     SEEDER: "RolSeeder",
+    GET_ONLY_ROL_BY_ID: "GetOnlyRolById",
+    SEARCH: "RolSearch",
+    DISABLE_ROL: "DisableRol",
+    ENABLE_ROL: "EnableRol",
+    UPDATE_ROL: "UpdateRol",
+    GET_ROLS_ACTIVES: "GetRolActives",
 }

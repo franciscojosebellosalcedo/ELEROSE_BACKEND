@@ -9,10 +9,22 @@ const rolController = container.resolve<RolController>( ROL_TOKENS.CONTROLLER );
 
 const router = Router();
 
-router.post("/", authMiddleware, handlerAsync( rolController.create) );
+router.post("/", authMiddleware, handlerAsync(rolController.create));
 
-router.get("/paginate", authMiddleware, handlerAsync( rolController.paginate ) );
+router.get("/search", authMiddleware, handlerAsync(rolController.search));
 
-router.get("/:id", authMiddleware, handlerAsync( rolController.getRolById) );
+router.get("/actives", authMiddleware, handlerAsync(rolController.getOnlyActives));
+
+router.get("/paginate", authMiddleware, handlerAsync(rolController.paginate));
+
+router.get("/:id/only-rol", authMiddleware, handlerAsync(rolController.getOnlyRolById));
+
+router.get("/:id", authMiddleware, handlerAsync(rolController.getRolById));
+
+router.put("/:id", authMiddleware, handlerAsync(rolController.update));
+
+router.put("/:id/disable", authMiddleware, handlerAsync(rolController.disable));
+
+router.put("/:id/enable", authMiddleware, handlerAsync(rolController.enable));
 
 export default router;

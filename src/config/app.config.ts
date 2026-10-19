@@ -1,6 +1,6 @@
 
 export const appConfig = {
 
-    prefix: "/edifix/api/v1"
+    prefix: "/elerose/api/v1"
     
 }

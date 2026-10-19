@@ -1,16 +1,19 @@
 import { container } from "tsyringe";
 import { Repository } from "typeorm";
-import { ModuleEntityDB } from "../infraestructure/database/module.entity.db.js";
-import { MENU_TOKENS, OPTION_TOKENS } from "./menu.container.tokens.ts";
+import { ModuleEntityDB } from "../infraestructure/database/module.entity.db.ts";
+import { MENU_TOKENS, OPTION_TOKENS, SUBMODULE_TOKENS } from "./menu.container.tokens.ts";
 import { AppDataSource } from "../../../config/database/database.config.ts";
-import { ModuleRepositoryImpl } from "../infraestructure/repositories/module.repository.impl.js";
+import { ModuleRepositoryImpl } from "../infraestructure/repositories/module.repository.impl.ts";
 import type { ModuleRepository } from "../domain/repositories/module.repository.ts";
-import { MenuSeeder } from "../../../seeders/menu.seeder.js";
+import { MenuSeeder } from "../../../seeders/menu.seeder.ts";
 import type { OptionRepository } from "../domain/repositories/option.repository.ts";
-import { OptionEntityDB } from "../infraestructure/database/option.entity.db.js";
+import { OptionEntityDB } from "../infraestructure/database/option.entity.db.ts";
 import { OptionRepositoryImpl } from "../infraestructure/repositories/option.repository.impl.ts";
-import { MenuController } from "../presentation/controller/menu.controller.js";
-import { GetMenuUseCase } from "../application/get.menu.use.case.js";
+import { MenuController } from "../presentation/controller/menu.controller.ts";
+import { GetMenuUseCase } from "../application/get.menu.use.case.ts";
+import type { SubmoduleRepository } from "../domain/repositories/submodule.repository.ts";
+import { SubmoduleRepositoryImpl } from "../infraestructure/repositories/submodule.repository.impl.ts";
+import { SubmoduleEntityDB } from "../infraestructure/database/submodule.entity.db.ts";
 
 container.register<Repository<ModuleEntityDB>>(
     MENU_TOKENS.REPOSITORY_DB,
@@ -62,5 +65,21 @@ container.register<OptionRepository>(
     OPTION_TOKENS.REPOSITORY,
     {
         useClass: OptionRepositoryImpl
+    }
+);
+
+container.register<SubmoduleRepository>(
+    SUBMODULE_TOKENS.REPOSITORY,
+    {
+        useClass: SubmoduleRepositoryImpl
+    }
+);
+
+container.register<Repository<SubmoduleEntityDB>>(
+    SUBMODULE_TOKENS.REPOSITORY_DB,
+    {
+        useFactory: () =>{
+            return AppDataSource.getRepository<SubmoduleEntityDB>( SubmoduleEntityDB );
+        }
     }
 );

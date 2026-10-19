@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { TypeormUnitOfWork } from "./typeorm.unit.of.work.js";
+import { TypeormUnitOfWork } from "./typeorm.unit.of.work.ts";
 import { DATABASE_TOKENS } from "./database.container.tokens.ts";
 import { AppDataSource } from "../../config/database/database.config.ts";
 

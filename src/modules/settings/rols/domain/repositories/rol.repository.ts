@@ -8,9 +8,19 @@ export abstract class RolRepository {
 
     abstract paginate( page: number , limit: number ): Promise<TPagination<unknown>>;
 
+    abstract search( name: string ) : Promise<RolEntity[]>;
+
+    abstract existByNameExludeById( name: string , idExclude: number ): Promise<RolEntity | null>;
+
     abstract update( id: number, values: TUpdateRol ): Promise<RolEntity | null>;
 
     abstract findById( id: number ): Promise<RolEntity | null>;
+
+    abstract findOnlyActives( ): Promise<RolEntity[]>;
+
+    abstract disable( id: number, idUser: number ): Promise<RolEntity | null>;
+
+    abstract enable( id: number , idUser: number): Promise<RolEntity | null>;
 
     abstract findByName( name: string ): Promise<RolEntity | null>;
 

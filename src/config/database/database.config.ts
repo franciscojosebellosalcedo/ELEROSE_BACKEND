@@ -7,6 +7,8 @@ import { ModuleEntityDB } from "../../modules/menu/infraestructure/database/modu
 import { OptionEntityDB } from "../../modules/menu/infraestructure/database/option.entity.db.ts";
 import { RolEntityDB } from "../../modules/settings/rols/infraestructure/database/rol.entity.db.ts";
 import { RolPermissionEntityDB } from "../../modules/settings/rols/infraestructure/database/rol.permission.entity.db.ts";
+import { SubmoduleEntityDB } from "../../modules/menu/infraestructure/database/submodule.entity.db.ts";
+import { UserPermissionEntityDB } from "../../modules/settings/users/infraestructure/database/user.permission.entity.db.ts";
 
 export const AppDataSource = new DataSource({
 
@@ -30,6 +32,8 @@ export const AppDataSource = new DataSource({
         OptionEntityDB,
         RolEntityDB,
         RolPermissionEntityDB,
+        SubmoduleEntityDB,
+        UserPermissionEntityDB
     ],
 
     migrations: process.env.RUNNING_TESTS === "true" ? [] : [

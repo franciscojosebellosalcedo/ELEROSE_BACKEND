@@ -1,33 +1,63 @@
 import { inject, injectable } from "tsyringe";
-import type { UserRepository } from "../domain/repositories/user.repository.ts";
-import { USER_TOKENS } from "../container/user.container.tokens.ts";
-import type { TCreateUser } from "../types/user.type.ts";
+import { DATABASE_TOKENS } from "../../../../shared/database/database.container.tokens.ts";
+import type { IUnitOfWork } from "../../../../shared/database/unit.of.work.ts";
 import { AppException } from "../../../../shared/errors/handler.error.ts";
 import { USER_RESPONSE_CODE } from "../../../../shared/reseponse/user.response.code.ts";
 import { Security } from "../../../../shared/security.ts";
+import { USER_TOKENS } from "../container/user.container.tokens.ts";
+import type { UserRepository } from "../domain/repositories/user.repository.ts";
+import type { TCreateUserPermission, TDataCreateUser } from "../types/user.type.ts";
+import type { UserPermissionRepository } from "../domain/repositories/user.permission.repository.ts";
+import { USER_PERMISSION_TOKENS } from "../container/user.permission.tokens.ts";
 
 @injectable()
 export class CreateUserUseCase {
 
     constructor(
-        @inject( USER_TOKENS.REPOSITORY )
-        private readonly userRepository: UserRepository
+        @inject( DATABASE_TOKENS.UNIT_OF_WORK )
+        private readonly unitOfWork: IUnitOfWork
     ){
 
     }
 
-    async execute( values: TCreateUser ){
+    async execute( values: TDataCreateUser, idUser: number ){
 
-        const exist = await this.userRepository.findByNameUser( values.usua_NombreUsuario );
+        return this.unitOfWork.execute( async (context) =>{
 
-        if(exist){
-            throw new AppException( 400, USER_RESPONSE_CODE.USER_EXIST, "Usuario ya existente");
-        }
+            const userRepository: UserRepository = context.resolve( USER_TOKENS.REPOSITORY );
 
-        const passwordHash = Security.hasPassword( values.usua_Contrasenia );
+            const userPermissionRepository: UserPermissionRepository = context.resolve( USER_PERMISSION_TOKENS.REPOSITORY );
 
-        values.usua_Contrasenia = passwordHash;
+            const {user } = values;
 
-        return await this.userRepository.create(values);
+            const exist = await userRepository.findByNameUser( user.usua_NombreUsuario );
+
+            if(exist){
+                throw new AppException( 400, USER_RESPONSE_CODE.USER_EXIST, "Usuario ya existente");
+            }
+
+            const passwordHash = Security.hasPassword( user.usua_Contrasenia );
+
+            user.usua_Contrasenia = passwordHash;
+
+            const userCreated = await userRepository.create({
+                ...user,
+                usua_CreacionId: idUser
+            });
+
+            const permissions: TCreateUserPermission[] = values.permissions.map((p) => ({
+                ...p,
+                peusua_CreacionId: idUser,
+                peusua_UsuarioId: userCreated.usua_Id ?? 0
+            }))
+
+            const permissionsCreated = await userPermissionRepository.create( permissions );
+
+            return {
+                user: userCreated,
+                permissions: permissionsCreated
+            }
+            
+        })
     }
 }

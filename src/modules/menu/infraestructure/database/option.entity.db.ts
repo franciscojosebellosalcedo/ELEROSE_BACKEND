@@ -7,7 +7,7 @@ export class OptionEntityDB {
     opcion_Id!: number;
 
     @Column({ type: "int", nullable: false })
-    opcion_ModuloId!: number;
+    opcion_SubmoduloId!: number;
 
     @Column({ type: "varchar", nullable: false })
     opcion_Nombre!: string;

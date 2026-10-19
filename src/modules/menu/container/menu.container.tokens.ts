@@ -10,3 +10,8 @@ export const OPTION_TOKENS = {
     REPOSITORY: "OptionRepository",
     REPOSITORY_DB: "OptionRepositoryDB",
 }
+
+export const SUBMODULE_TOKENS = {
+    REPOSITORY: "SubmoduleRepository",
+    REPOSITORY_DB: "SubmoduleRepositoryDB",
+}

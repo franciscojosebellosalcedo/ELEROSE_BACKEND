@@ -10,4 +10,18 @@ const router = Router();
 
 router.post("/", handlerAsync( controller.create ) );
 
+router.put("/:id", handlerAsync( controller.update ) );
+
+router.put("/:id/disable", handlerAsync( controller.disable ) );
+
+router.put("/:id/enable", handlerAsync( controller.enable ) );
+
+router.get("/paginate", handlerAsync( controller.paginate ) );
+
+router.get("/search", handlerAsync( controller.search ) );
+
+router.get("/:id", handlerAsync( controller.getUserById ) );
+
+router.get("/:id/only-user", handlerAsync( controller.getOnlyUserById ) );
+
 export default router;

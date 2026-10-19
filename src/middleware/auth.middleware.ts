@@ -30,7 +30,7 @@ export const authMiddleware = async ( req: Request, res: Response , next: NextFu
         };
 
         const payload: any = Security.verifyToken( token, envConfig.jwtSecretAccessToken as string );
-
+        
         const repository = AppDataSource.getRepository( UserEntityDB );
 
         const user = await repository.findOneBy({ usua_Id: payload.usua_Id});

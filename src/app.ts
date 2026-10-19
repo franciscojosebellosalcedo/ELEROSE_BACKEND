@@ -9,6 +9,7 @@ import { errorMiddleware } from "./middleware/error.middleware.ts";
 import { authMiddleware } from "./middleware/auth.middleware.ts";
 import cors from "cors";
 import { envConfig } from "./config/env/env.config.ts";
+import { normalizeBody } from "./middleware/normalize.body.middleware.ts";
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use( cors({
 app.use(express.json({
     limit: "10mb"
 }));
+
+app.use( normalizeBody )
 
 app.use( appConfig.prefix , routesPublic );
 

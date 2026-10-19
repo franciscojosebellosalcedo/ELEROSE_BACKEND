@@ -24,9 +24,6 @@ export class UserEntityDB {
     @Column({ type: "int", nullable: false })
     usua_RolId!: number;
 
-    @Column({ type: "datetime", nullable: true })
-    usua_UltimoAcceso!: Date;
-
     @Column({type: "boolean", nullable: false , default: true })
 
     @Column({ type: "int", nullable: false })
