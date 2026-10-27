@@ -9,6 +9,7 @@ export const MENU_TOKENS = {
 export const OPTION_TOKENS = {
     REPOSITORY: "OptionRepository",
     REPOSITORY_DB: "OptionRepositoryDB",
+    GET_OPTIONS_USE_CASE: "GetOptionsUseCase",
 }
 
 export const SUBMODULE_TOKENS = {

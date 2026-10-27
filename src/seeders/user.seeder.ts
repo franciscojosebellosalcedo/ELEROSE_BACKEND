@@ -20,10 +20,10 @@ export class UserSeeder {
 
             const users: UserEntity[] = [
                 new UserEntity(
-                    null , "Sistema", "system", "systemedifix", "SYSTEM", true, 0 , 0 , 0 , new Date(), null, new Date()
+                    null , "Sistema", "system", "systemedifix", "SYSTEM", true, 0 , 0 , 0 , new Date(), new Date()
                 ),
                 new UserEntity(
-                    null , "Administrador", "admin", "admin2024", "ADMIN", true, 1, 1, 0 , new Date(), null, new Date()
+                    null , "Administrador", "admin", "admin2024", "ADMIN", true, 1, 1, 0 , new Date(), new Date()
                 )
             ];
 

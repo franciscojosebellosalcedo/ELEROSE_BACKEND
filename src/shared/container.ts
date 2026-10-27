@@ -3,4 +3,7 @@ import "../modules/settings/users/container/user.container.ts";
 import "../modules/menu/container/menu.container.ts";
 import "../modules/settings/rols/container/rol.container.ts";
 import "../modules/settings/rols/container/rol.permission.container.ts";
+import "../modules/sales/categories/container/category.container.ts";
 import "../shared/database/database.container.ts";
+import "../config/s3/container/s3.container.ts";
+import "../modules/inventories/warehouses/container/warehouse.container.ts";

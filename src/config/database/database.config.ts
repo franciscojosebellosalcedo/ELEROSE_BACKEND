@@ -9,6 +9,8 @@ import { RolEntityDB } from "../../modules/settings/rols/infraestructure/databas
 import { RolPermissionEntityDB } from "../../modules/settings/rols/infraestructure/database/rol.permission.entity.db.ts";
 import { SubmoduleEntityDB } from "../../modules/menu/infraestructure/database/submodule.entity.db.ts";
 import { UserPermissionEntityDB } from "../../modules/settings/users/infraestructure/database/user.permission.entity.db.ts";
+import { CategoryEntityDB } from "../../modules/sales/categories/infraestructure/database/category.entity.db.ts";
+import { WarehouseEntityDB } from "../../modules/inventories/warehouses/infraestructure/database/warehouse.entity.db.ts";
 
 export const AppDataSource = new DataSource({
 
@@ -33,12 +35,14 @@ export const AppDataSource = new DataSource({
         RolEntityDB,
         RolPermissionEntityDB,
         SubmoduleEntityDB,
-        UserPermissionEntityDB
+        UserPermissionEntityDB,
+        CategoryEntityDB,
+        WarehouseEntityDB
     ],
 
     migrations: process.env.RUNNING_TESTS === "true" ? [] : [
         path.resolve(
-            process.cwd(),
+            `${process.cwd()}/src/`,
             "migrations/*.{ts,js}"
         )
     ],

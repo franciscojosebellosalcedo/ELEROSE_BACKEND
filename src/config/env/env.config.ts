@@ -39,4 +39,11 @@ export const envConfig = {
     dbHost: getValue("DB_HOST"),
     dbUser: getValue("DB_USER"),
     dbPassword: getValue("DB_PASSWORD"),
+
+    s3Bucket: getValue("S3_BUCKET"),
+    s3AccessKey: getValue("S3_ACCESS_KEY_ID"),
+    s3SecretKey: getValue("S3_SECRET_ACCESS_KEY"),
+    s3Endpoint: getValue("S3_ENDPOINT"),
+    s3Region: getValue("S3_REGION"),
+    s3Certificate: getValue("NODE_EXTRA_CA_CERTS"),
 }

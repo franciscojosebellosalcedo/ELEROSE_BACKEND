@@ -10,4 +10,6 @@ const router = Router();
 
 router.get("/", handlerAsync( menuController.getMenu ) );
 
+router.get("/options", handlerAsync( menuController.getOptions ) );
+
 export default router;

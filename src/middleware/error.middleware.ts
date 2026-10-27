@@ -8,8 +8,10 @@ export const errorMiddleware = (
     req: Request,
     res: Response,
     next: NextFunction
-) => {    
-
+) => {
+    
+    console.log(error);
+    
     if (error instanceof AppException) {
         return res.status(
             error.statusCode

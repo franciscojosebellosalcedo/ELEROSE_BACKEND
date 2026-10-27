@@ -46,7 +46,8 @@ export class MenuSeeder {
                             options: [
                                 { opcion_Nombre: "Categorías", opcion_Codigo: "VENTAS_CATEGORIAS", opcion_Activo: true, opcion_Ruta: "/sales/categories", opcion_Orden: 1 },
                                 { opcion_Nombre: "Productos", opcion_Codigo: "VENTAS_PRODUCTOS", opcion_Activo: true, opcion_Ruta: "/sales/products", opcion_Orden: 2 },
-                                { opcion_Nombre: "Clientes", opcion_Codigo: "VENTAS_CLIENTES", opcion_Activo: true, opcion_Ruta: "/sales/clients", opcion_Orden: 3},
+                                { opcion_Nombre: "Insumos", opcion_Codigo: "VENTAS_INSUMOS", opcion_Activo: true, opcion_Ruta: "/sales/materials", opcion_Orden: 3 },
+                                { opcion_Nombre: "Clientes", opcion_Codigo: "VENTAS_CLIENTES", opcion_Activo: true, opcion_Ruta: "/sales/clients", opcion_Orden: 4},
                             ]
                         }
                     ]

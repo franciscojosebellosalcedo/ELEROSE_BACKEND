@@ -14,6 +14,7 @@ import { GetMenuUseCase } from "../application/get.menu.use.case.ts";
 import type { SubmoduleRepository } from "../domain/repositories/submodule.repository.ts";
 import { SubmoduleRepositoryImpl } from "../infraestructure/repositories/submodule.repository.impl.ts";
 import { SubmoduleEntityDB } from "../infraestructure/database/submodule.entity.db.ts";
+import { GetOptionsUseCase } from "../application/get.options.use.case.ts";
 
 container.register<Repository<ModuleEntityDB>>(
     MENU_TOKENS.REPOSITORY_DB,
@@ -21,6 +22,13 @@ container.register<Repository<ModuleEntityDB>>(
         useFactory: () => {
             return AppDataSource.getRepository( ModuleEntityDB );
         }
+    }
+);
+
+container.register(
+    OPTION_TOKENS.GET_OPTIONS_USE_CASE,
+    {
+        useClass: GetOptionsUseCase
     }
 );
 

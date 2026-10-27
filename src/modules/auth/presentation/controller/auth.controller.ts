@@ -19,6 +19,7 @@ export class AuthController {
 
         @inject( AUTH_TOKENS.REFRESS_SESSION )
         private readonly refressSessionUseCase: RefressSessionUseCase
+        
     ){}
 
     refressSession = async ( req: Request, res: Response  ) =>{

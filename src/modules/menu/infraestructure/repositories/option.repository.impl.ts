@@ -16,6 +16,10 @@ export class OptionRepositoryImpl implements OptionRepository {
 
     ){}
 
+    async find(): Promise<OptionEntity[]> {
+        return await this.optionRepositoryDB.find();
+    }
+
     async createOptions(options: TOptionMenu[]): Promise<void> {
 
         options.map( async (option) => {
@@ -43,8 +47,8 @@ export class OptionRepositoryImpl implements OptionRepository {
         return await this.optionRepositoryDB.findOneBy({ opcion_Id: id });
     }
 
-    async findOptionsByModuleId(idModule: number): Promise<OptionEntity[]> {
-        return await this.optionRepositoryDB.findBy({ opcion_ModuloId: idModule });
+    async findOptionsBySubmoduleId(idSubmodule: number): Promise<OptionEntity[]> {
+        return await this.optionRepositoryDB.findBy({ opcion_SubmoduloId: idSubmodule });
     }
 
 }
